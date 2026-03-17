@@ -1,0 +1,30 @@
+{% extends 'defects/base2.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Header -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-success">➕ Add New Defect</h2>
+        <p class="text-muted">Fill in the details below to report a new defect.</p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="POST" action="{% url 'add_defect' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="text-end mt-3">
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="bi bi-plus-circle me-2"></i> Add Defect
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

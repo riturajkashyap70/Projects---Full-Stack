@@ -1,0 +1,145 @@
+{% extends 'account/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+  body {
+    background: linear-gradient(to right, #fdfbfb, #ebedee);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .form-wrapper {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 85vh;
+  }
+
+  .form-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.1);
+    padding: 3rem 4rem;
+    width: 90%;
+    max-width: 1100px;
+    animation: fadeIn 0.6s ease-in-out;
+    border-left: 8px solid #0072ff;
+    border-right: 8px solid #00c6ff;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .form-card h1 {
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .btn-save {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 0.6rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 114, 255, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .btn-save:hover {
+    background: linear-gradient(to right, #0072ff, #00c6ff);
+    transform: scale(1.03);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 114, 255, 0.4);
+  }
+
+  .btn-reset {
+    margin-left: 1rem;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    background-color: #f8f9fa;
+    border: 1px solid #ced4da;
+    border-radius: 0.5rem;
+  }
+
+  .btn-reset:hover {
+    background-color: #e2e6ea;
+  }
+
+  .success-message {
+    text-align: center;
+    padding: 2rem;
+    color: #28a745;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .success-message a {
+    color: #0072ff;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .success-message a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="container form-wrapper">
+  <div class="form-card">
+    {% if registered %}
+      <div class="success-message">
+        ✅ Thank you for registering!<br>
+        Please proceed to <a href="{% url 'login' %}">Login</a>
+      </div>
+    {% else %}
+      <h1>📝 Registration Form</h1>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row mb-3">
+          <div class="col-md-4">{{ form.first_name|as_crispy_field }}</div>
+          <div class="col-md-4">{{ form.last_name|as_crispy_field }}</div>
+          <div class="col-md-4">{{ form.username|as_crispy_field }}</div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">{{ form.password|as_crispy_field }}</div>
+          <div class="col-md-4">{{ form.email|as_crispy_field }}</div>
+          <div class="col-md-4">{{ form.date_joined|as_crispy_field }}</div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">{{ form1.phone_no|as_crispy_field }}</div>
+          <div class="col-md-6">{{ form1.gender|as_crispy_field }}</div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">{{ form1.zip_code|as_crispy_field }}</div>
+          <div class="col-md-4">{{ form1.city|as_crispy_field }}</div>
+          <div class="col-md-4">{{ form1.state|as_crispy_field }}</div>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-md-6">{{ form1.profile_pic|as_crispy_field }}</div>
+        </div>
+
+        <div class="mb-4">
+          {{ form1.captcha }}
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-save">Save</button>
+          <button type="reset" class="btn btn-reset">Reset</button>
+        </div>
+      </form>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

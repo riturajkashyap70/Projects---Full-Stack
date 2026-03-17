@@ -1,0 +1,32 @@
+{% extends 'defects/base2.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Page Header -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold text-primary">
+            ✏️ Edit Defect Details
+        </h2>
+        <p class="text-muted">Update the information below and click "Edit" to save changes.</p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="text-end mt-3">
+                            <button type="submit" class="btn btn-success px-4">
+                                <i class="bi bi-pencil-square me-2"></i> Edit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

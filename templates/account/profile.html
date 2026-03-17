@@ -1,0 +1,84 @@
+{% extends 'account/base.html' %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-body">
+                    <h2 style="text-align: center;">{{ user.username}}'s Profile</h2>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>First Name :</b> {{ user.first_name}}</li>
+                        <li class="list-group-item"><b>Last Name :</b> {{ user.last_name }}</li>
+                        <li class="list-group-item"><b>Email :</b> {{ user.email }}</li>
+                        <li class="list-group-item"><b>Date Joined :</b> {{ user.date_joined }}</li>
+                        <li class="list-group-item"><b>Phone NO :</b> {{ user.userdata.phone_no}}</li>
+                        <li class="list-group-item"><b>Gender :</b> {{ user.userdata.gender }}</li>
+                        <li class="list-group-item"><b>Zip Code :</b> {{ user.userdata.zip_code }}</li>
+                        <li class="list-group-item"><b>City :</b> {{ user.userdata.city }}</li>
+                        <li class="list-group-item"><b>State :</b> {{ user.userdata.state }}</li>
+                        <button class="btn primary" style="border: 2px solid blue;"><a href="{% url 'update' %}"
+                                style="text-decoration: none;">Update</a></button>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-body">
+                    {% if user.userdata.profile_pic %}
+                    <img src="{{  user.userdata.profile_pic.url }}" alt="" style="border-radius: 50%; height:520px">
+                    {% else %}
+                    <h2>image not loading</h2>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+{% if is_developer %}
+
+<div class="container text-center">
+    <div class="row">
+
+        <div class="col">
+            <div class="card card-body">
+                <h4>Total Defects:</h4>
+                <h3>{{ total_assigned }}</h3>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-body">
+                <h4>Pending Defects: </h4>
+                <h3>{{ pending_count }}</h3>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-body">
+                <h4>Completed Defects: </h4>
+                <h3>{{ completed_count }}</h3>
+            </div>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
+                <h4>Designation: </h4>
+                <h3>{{ developer_info.designation }}</h3>
+            </div>
+
+        </div>
+        <div class="col">
+            <div class="card card-body">
+                <h4>Experience: </h4>
+                <h3>{{ developer_info.experience }} years</h3>
+            </div>
+        </div>
+
+    </div>
+
+
+    {% endif %}
+
+
+    {% endblock %}

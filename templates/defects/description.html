@@ -1,0 +1,42 @@
+{% extends 'defects/base2.html' %}
+
+
+
+
+{% block content %}
+<br>
+<h1 style="text-align: center;text-decoration:underline">Defects Description</h1>
+<br>
+<div class="container">
+    <div class="jumbotron">
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-6"> Defect ID: {{ defects.id }}</div>
+                <div class="col-6"> Defect Name: {{ defects.Defect_Name }}</div>
+            </div>
+        </div>
+
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-3"> Description: <br></div>
+                <div class="col-9">{{ defects.Description }}<br></div>
+            </div>
+        </div>
+
+        <div class="card card-body">
+            <h3 style="text-align: center;">Screen Shot:</h3>
+            <div class="row">
+                {% for img in defects_img %}
+                <div class="col-6"> <img src="{{ img.def_img.url }}" alt="Defect Screenshot" style="width: 60%;">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

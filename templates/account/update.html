@@ -1,0 +1,20 @@
+{% extends 'account/base.html' %}
+{% block content %}
+
+<br><br>
+<div class="container">
+    <div class="jumbotron">
+        <div class="card card-body">
+            <h2>Update Details</h2>
+            <form method="POST" action="{% url 'update' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                {{form1.as_p}}
+                <input type="submit" value="Save Changes" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

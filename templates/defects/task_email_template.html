@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #eef2f7;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Main container card */
+        .container {
+            max-width: 680px;
+            margin: 30px auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border: 1px solid #d9e2ec;
+        }
+
+        /* Header with gradient and border */
+        .header {
+            background: linear-gradient(135deg, #0062ff, #00c6ff);
+            color: #fff;
+            padding: 25px;
+            text-align: center;
+            border-bottom: 4px solid #004aad;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 26px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Content area */
+        .content {
+            padding: 25px 30px;
+            line-height: 1.6;
+        }
+        .content p {
+            margin: 12px 0;
+        }
+
+        /* Highlighted box for defect details */
+        .defect-box {
+            border: 2px solid #00a2ff;
+            border-radius: 8px;
+            background: #f4fbff;
+            padding: 15px 20px;
+            margin: 20px 0;
+        }
+        .defect-box h3 {
+            margin-top: 0;
+            color: #006bb3;
+            font-size: 18px;
+            border-bottom: 1px solid #cce7ff;
+            padding-bottom: 5px;
+        }
+        .defect-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+        .defect-box li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #b3e0ff;
+        }
+        .defect-box li:last-child {
+            border-bottom: none;
+        }
+        .defect-box strong {
+            color: #004a80;
+        }
+
+        /* Call-to-action button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #007bff, #00c6ff);
+            color: #fff !important;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+        }
+        .cta-button:hover {
+            background: linear-gradient(135deg, #0062cc, #009ac1);
+        }
+
+        /* Footer styling */
+        .footer {
+            background-color: #f4f6f8;
+            font-size: 12px;
+            color: #777;
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header -->
+        <div class="header">
+            <h2>🛠️ New Defect Assigned to You</h2>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <b>Dear {{ defect.Assigned_To.first_name|default:defect.Assigned_To.username }},</b>
+
+
+            <p>
+                A new defect has been assigned to you for resolution. This task has been marked as 
+                <strong style="color:#d9534f;">{{ defect.Priority}} Priority</strong> and requires your immediate attention.
+            </p>
+
+            <!-- Defect details box -->
+            <div class="defect-box">
+                <h3>📋 Defect Details</h3>
+                <ul>
+                    <li><strong>Defect Name:</strong> {{ defect.Defect_Name }}</li>
+                    <li><strong>Description:</strong> {{ defect.Description }}</li>
+                    <li><strong>Deadline:</strong> 28 August 2025</li>
+                </ul>
+            </div>
+
+            <p>
+                Please log in to your account to review the defect in detail and begin working on it promptly.
+            </p>
+
+            <!-- Call-to-action button -->
+            <a href="https://yourapp.com/login" class="cta-button">View Defect in Dashboard</a>
+
+            <p style="margin-top: 20px;">
+                Thank you for your dedication and timely response.
+            </p>
+            <p>Best regards,<br><strong>Testing Team</strong></p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>This is an automated notification. Please do not reply to this email.</p>
+            <p>&copy; 2025 Testing Team. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
