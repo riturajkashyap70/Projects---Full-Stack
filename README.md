@@ -138,6 +138,6 @@ python manage.py runserver
 **Ritu Raj Kashyap**
 
 * GitHub: https://github.com/riturajkashyap70
-* LinkedIn: Add your LinkedIn profile here
+
 
 ---
